@@ -1,0 +1,11 @@
+<div class="main">
+  <div class="cards">
+    <div *ngFor="let quiz of quizzes">
+      <app-quiz [quiz]="quiz" [picture]="getPictureForQuiz(quiz.name)"></app-quiz>
+    </div>
+  </div>
+  <div class="lucky_btn">
+    <button mat-raised-button color="primary" (click)="goToRandomQuiz()">I'm lucky</button>
+  </div>
+</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,18 @@
+<mat-card class="card">
+
+  <div class="card__image-container">
+    <img
+      src={{picture}}
+    />
+  </div>
+    <mat-card-content >
+  <p class="card__title text--medium">
+    {{quiz.name ||"" | capitalize }} quiz!
+  </p>
+   
+  </mat-card-content>
+  <mat-card-actions class="card__info">
+    <p class="text--medium">{{quiz.questions.length}} questions</p>
+      <button mat-raised-button class="text--medium" color="primary" (click)='goToQuiz(quiz)'>Start Quiz</button>
+    </mat-card-actions>
+</mat-card>

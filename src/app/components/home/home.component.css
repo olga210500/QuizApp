@@ -1,0 +1,17 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+
+}
+.cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 16px;
+}
+.lucky_btn{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}

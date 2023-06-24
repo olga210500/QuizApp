@@ -7,7 +7,36 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "prefix": "app",
+          "flat": false,
+          "path": "src/app/components",
+          "skipImport": true
+        },
+        "@schematics/angular:directive": {
+          "prefix": "app",
+          "flat": false,
+          "path": "src/app/directives",
+          "skipImport": true
+        },
+        "@schematics/angular:module": {
+          "prefix": "app",
+          "spec": true,
+          "flat": false,
+          "commonModule": true,
+          "path": "src/app/modules",
+          "skipImport": true
+        },
+        "@schematics/angular:service": {
+          "flat": false,
+          "path": "src/app/services"
+        },
+        "@schematics/angular:interface": {
+          "path": "src/app/interfaces"
+        },
+        "@schematics/angular:pipe": {
+          "flat": false,
+          "path": "src/app/pipes",
+          "skipImport": true
         }
       },
       "root": "",
@@ -30,6 +59,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -93,12 +123,27 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss"
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
