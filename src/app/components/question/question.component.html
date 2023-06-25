@@ -1,1 +1,15 @@
-<p>question works!</p>
+<mat-card>
+    <mat-card-content>
+      <mat-card-title >Question {{questionIndex+1}}:</mat-card-title>
+
+      <p>{{question}}</p>
+      <mat-radio-group >
+        <mat-radio-button *ngFor="let answer of answers; let i = index" [value]="answer">{{answer}}</mat-radio-button>
+      </mat-radio-group>
+    </mat-card-content>
+    <mat-card-actions class="actions">
+      <button mat-raised-button  color="secondary" (click)='cancelQuiz()'>Cancel</button>
+      <button mat-raised-button *ngIf="!isLastQuestion"  color="primary"  (click)='getNextQuestion(questionIndex)'>Next</button>
+      <button mat-raised-button *ngIf="isLastQuestion"  color="primary" (click)="finishQuiz()">Finish</button>
+      </mat-card-actions>
+  </mat-card>

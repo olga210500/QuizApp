@@ -18,7 +18,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private apiService: ApiService, private router: Router, private quizService:QuizService, private tokenService:TokenService) { }
 
   ngOnInit() {
-    this.fetchQuizQuestions();
+    if(!this.quizService.getQuizzes().length){
+      this.fetchQuizQuestions();
+    }else{
+      this.quizzes=this.quizService.getQuizzes();
+    }
     this.generateGuestToken();
     
   }
@@ -28,6 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       (response: ApiData) => {
         const questions = response.results;
         this.quizzes = this.apiService.formQuizzes(questions);
+        this.quizService.setQuizzes(this.quizzes)
       },
       (error: Error) => {
         console.log(error)

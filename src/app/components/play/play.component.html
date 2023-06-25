@@ -1,2 +1,7 @@
-<p>play works!</p>
+    <mat-toolbar class="top-bar">
+      <p>{{currentQuiz.name}}</p>
+      <p>Time: {{ timeElapsed  }} sec</p>
+    </mat-toolbar>
+  
+<app-question [isLastQuestion]="lastQuestion" [quiz]="currentQuiz" [questionIndex]="currentQuestionIndex" (nextQuestion)="onNext($event)"></app-question>
 <router-outlet></router-outlet>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ApiData, Questions, Quiz } from 'src/app/interfaces/interfaces';
+import { ApiData, Question, Quiz } from 'src/app/interfaces/interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,8 +13,8 @@ export class ApiService {
   getQuiz(): Observable<ApiData> {  
     return this.http.get<ApiData>(this.apiUrl);
   }
-  formQuizzes(data: Questions[]): Quiz[] {
-    const quizArray:Quiz[] = Object.values(data.reduce((result:any, obj:Questions) => {
+  formQuizzes(data: Question[]): Quiz[] {
+    const quizArray:Quiz[] = Object.values(data.reduce((result:any, obj:Question) => {
       const category = obj.category;
       if (!result[category]) {
         result[category] = { name: category, questions: [] };

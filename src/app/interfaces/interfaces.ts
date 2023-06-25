@@ -1,8 +1,8 @@
 export interface ApiData {
     response_code: number
-    results: Questions[]
+    results: Question[]
 }
-export interface Questions {
+export interface Question {
     category:string
     correct_answer:string
     difficulty:string
@@ -12,5 +12,5 @@ export interface Questions {
 }
 export interface Quiz{
     name:string
-    questions:Questions[]
+    questions:Question[]
 } 

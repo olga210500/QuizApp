@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { MatRadioModule } from '@angular/material/radio';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -13,6 +13,9 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatCardModule} from '@angular/material/card';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
+import { QuestionComponent } from './components/question/question.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +24,8 @@ import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
     PlayComponent,
     StatsComponent,
     QuizComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +34,8 @@ import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
     BrowserAnimationsModule,
     MatCardModule,
     MatButtonModule,
+    MatRadioModule,
+    MatToolbarModule
     
   ],
   providers: [],
