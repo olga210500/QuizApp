@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  mat-card {
+    width: 100%;
+  }
+  
+  .stats {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+  

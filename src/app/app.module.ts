@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { FinishComponent } from './components/finish/finish.component';
 import { PlayComponent } from './components/play/play.component';
-import { StatsComponent } from './components/stats/stats.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
@@ -15,17 +14,16 @@ import { QuizComponent } from './components/quiz/quiz.component';
 import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
 import { QuestionComponent } from './components/question/question.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
-
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     FinishComponent,
     PlayComponent,
-    StatsComponent,
     QuizComponent,
     CapitalizePipe,
-    QuestionComponent
+    QuestionComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +33,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatCardModule,
     MatButtonModule,
     MatRadioModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatProgressSpinnerModule,
     
   ],
   providers: [],

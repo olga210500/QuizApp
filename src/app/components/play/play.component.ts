@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { Question, Quiz } from 'src/app/interfaces/interfaces';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import {  Router } from '@angular/router';
+import {  Quiz } from 'src/app/interfaces/interfaces';
 import { QuizService } from 'src/app/services/quiz/quiz.service';
 
 @Component({
@@ -13,13 +14,27 @@ export class PlayComponent implements OnInit, OnDestroy {
   startTime!: Date;
   timeElapsed!: number;
   timerInterval: any;
-  lastQuestion!: boolean;
 
-  constructor(private quizService: QuizService) {
+
+  answers!:string[];
+  currentQuestion!:string;
+  correctAnswer!:string;
+
+  countCorrectAnswers=0;
+  countPoints=0;
+  constructor(private quizService: QuizService, private router:Router) {
 
   }
   ngOnInit(): void {
-    this.currentQuiz = this.quizService.getQuiz();
+    const currentQuiz = this.quizService.getQuiz()
+    if (currentQuiz) {
+      this.currentQuiz = currentQuiz;
+      this.getAnswers(0)
+    } else {
+      console.log('Something went wrong');
+
+    }
+
     this.startQuiz();
   }
 
@@ -37,17 +52,41 @@ export class PlayComponent implements OnInit, OnDestroy {
     }, 1000);
   }
 
-  submitQuiz(): void {
-    clearInterval(this.timerInterval);
- }
-  onNext(questionIndex: number) {
-    if (questionIndex+1 < this.currentQuiz.questions.length) {
-      this.currentQuestionIndex++
+  getAnswers(questionIndex: number): void {
+    const question = this.currentQuiz.questions[questionIndex]
+    const answers = question.incorrect_answers;
+    this.correctAnswer = question.correct_answer
+    const randomIndex = Math.floor(Math.random() * (answers.length + 1));
+    answers.splice(randomIndex, 0,this.correctAnswer);
+    this.answers = answers;
+    this.currentQuestion = question.question;
+    console.log(question,answers,this.answers)
 
+
+  }
+
+  cancelQuiz(){
+    this.router.navigate(['/home'])
+  }
+
+  onNext(answer:string) {
+    this.getStatistic(answer)
+    console.log(this.countCorrectAnswers,this.countPoints,this.timeElapsed)
+    if (this.currentQuestionIndex+1 === this.currentQuiz.questions.length) {
+      this.quizService.setStatistic({points:this.countPoints,correctAnswers:this.countCorrectAnswers,time:this.timeElapsed,totalQuestions:this.currentQuiz.questions.length})
+      this.router.navigate(['/finish'])   
     } else {
       this.currentQuestionIndex++
-      this.lastQuestion = true
+      this.getAnswers(this.currentQuestionIndex)
+      
     }
+  }
+  getStatistic(answer:string):void{
+    if(answer===this.correctAnswer){
+      this.countCorrectAnswers++
+    }
+    this.countPoints=this.countCorrectAnswers*2;
+
   }
 
 }

@@ -1,40 +1,44 @@
-import { JsonPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { Quiz } from 'src/app/interfaces/interfaces';
+import { Quiz, Statistic } from 'src/app/interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
 
-  private quiz!: Quiz;
   private quizKey = "quizzes"
   private currentQuiz = 'currentQuiz'
+  private quizStatistic: Statistic={
+    points: 0,
+    correctAnswers: 0,
+    time: 0,
+    totalQuestions:0
+  }
 
   setQuiz(quiz: Quiz): void {
-    localStorage.setItem(this.currentQuiz,JSON.stringify(quiz))
+    localStorage.setItem(this.currentQuiz, JSON.stringify(quiz))
   }
 
-  getQuiz(): Quiz {
+  getQuiz(): Quiz | null {
     const quiz = localStorage.getItem(this.currentQuiz);
-    if(quiz){
-      return JSON.parse(quiz)
-    }
-    return this.quiz;
+    return JSON.parse(quiz || '')
   }
-  removeQuiz():void{
+  removeQuiz(): void {
     localStorage.removeItem(this.currentQuiz)
   }
-  setQuizzes(quizzes: Quiz[]) {
-    localStorage.setItem("quizzes", JSON.stringify(quizzes))
-  }
-  getQuizzes():Quiz[]{
+  getQuizzes(): Quiz[] {
     const quizzes = localStorage.getItem(this.quizKey)
-    if(quizzes){
+    if (quizzes) {
       return JSON.parse(quizzes);
 
     }
     return [];
+  }
+  setStatistic(statistic:Statistic){
+    this.quizStatistic = statistic;
+  }
+  getStatistic(){
+    return this.quizStatistic;
   }
 
 }

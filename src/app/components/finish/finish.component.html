@@ -1,1 +1,16 @@
-<p>finish works!</p>
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Quiz Finished!</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="stats">
+        <p>Points: {{ statistic.points }}</p>
+        <p>Number of Correct Answers: {{ statistic.correctAnswers }}</p>
+        <p>Time: {{ statistic.time }}</p>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" routerLink="/home">Go Home</button>
+    </mat-card-actions>
+  </mat-card>
+  

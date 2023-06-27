@@ -4,7 +4,7 @@
       <app-quiz [quiz]="quiz" [picture]="getPictureForQuiz(quiz.name)"></app-quiz>
     </div>
   </div>
-  <div class="lucky_btn">
+  <div class="lucky_btn" *ngIf="quizzes">
     <button mat-raised-button color="primary" (click)="goToRandomQuiz()">I'm lucky</button>
   </div>
 </div>

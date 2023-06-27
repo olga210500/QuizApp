@@ -14,3 +14,9 @@ export interface Quiz{
     name:string
     questions:Question[]
 } 
+export interface Statistic{
+    points:number
+    correctAnswers:number
+    time:number
+    totalQuestions:number
+}

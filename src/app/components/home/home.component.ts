@@ -15,16 +15,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   quizzes !: Quiz[];
   private subscription: Subscription | undefined;
 
-  constructor(private apiService: ApiService, private router: Router, private quizService:QuizService, private tokenService:TokenService) { }
+  constructor(private apiService: ApiService, private router: Router, private quizService: QuizService, private tokenService: TokenService) { }
 
   ngOnInit() {
-    if(!this.quizService.getQuizzes().length){
-      this.fetchQuizQuestions();
-    }else{
-      this.quizzes=this.quizService.getQuizzes();
-    }
+
+    this.fetchQuizQuestions();
+    this.quizService.removeQuiz()
     this.generateGuestToken();
-    
+
   }
 
   fetchQuizQuestions() {
@@ -32,7 +30,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       (response: ApiData) => {
         const questions = response.results;
         this.quizzes = this.apiService.formQuizzes(questions);
-        this.quizService.setQuizzes(this.quizzes)
       },
       (error: Error) => {
         console.log(error)
@@ -51,7 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   }
   generateGuestToken(): void {
-    const guestToken =  this.tokenService.generateToken();
+    const guestToken = this.tokenService.generateToken();
     this.tokenService.setToken(guestToken);
   }
   ngOnDestroy(): void {
