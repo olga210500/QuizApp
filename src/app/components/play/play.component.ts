@@ -70,6 +70,7 @@ export class PlayComponent implements OnInit, OnDestroy {
     this.getStatistic(answer)
     if (this.currentQuestionIndex + 1 === this.currentQuiz.questions.length) {
       this.quizService.setStatistic({ points: this.countPoints, correctAnswers: this.countCorrectAnswers, time: this.timeElapsed, totalQuestions: this.currentQuiz.questions.length })
+      this.quizService.setQuizFinished(true);
       this.router.navigate(['/finish'])
     } else {
       this.currentQuestionIndex++

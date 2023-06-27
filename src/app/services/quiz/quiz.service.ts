@@ -14,6 +14,7 @@ export class QuizService {
     time: 0,
     totalQuestions:0
   }
+  private quizFinished=false;
 
   setQuiz(quiz: Quiz): void {
     localStorage.setItem(this.currentQuiz, JSON.stringify(quiz))
@@ -39,6 +40,12 @@ export class QuizService {
   }
   getStatistic(){
     return this.quizStatistic;
+  }
+  setQuizFinished(isFinished:boolean){
+    this.quizFinished=isFinished;
+  }
+  getQuizFinished(){
+    return this.quizFinished;
   }
 
 }

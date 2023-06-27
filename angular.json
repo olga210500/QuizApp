@@ -37,6 +37,10 @@
           "flat": false,
           "path": "src/app/pipes",
           "skipImport": true
+        },
+        "@schematics/angular:guard": {
+          "flat": false,
+          "path": "src/app/guards"
         }
       },
       "root": "",

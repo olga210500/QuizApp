@@ -24,6 +24,7 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     QuizComponent,
     CapitalizePipe,
     QuestionComponent,
+  
   ],
   imports: [
     BrowserModule,
